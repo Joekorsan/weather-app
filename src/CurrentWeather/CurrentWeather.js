@@ -10,7 +10,6 @@ const CurrentWeather = (props) => {
 
 
 
-  console.log('props.currentWeather: ',props.currentWeather.main);
     return(
       <div>
         <h1> current weather </h1>

@@ -15,12 +15,6 @@ class App extends Component {
   }
 
   componentDidMount(){
-    // axios.get(`http://api.openweathermap.org/data/2.5/weather?q=Phoenix,us&appid=${process.env.REACT_APP_API_KEY}`)
-    // .then(response => {
-    //   this.setState({
-    //     currentForcast: response.data
-    //   })
-    // })
 
     Promise.all([
       axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=Phoenix,us&appid=${process.env.REACT_APP_API_KEY}&units=imperial`),
@@ -37,14 +31,19 @@ class App extends Component {
   }
 
 
-  chnageCity = (city) =>{
+  changeCity = (city) =>{
     console.log('city in app:',city)
-    axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city},us&appid=${process.env.REACT_APP_API_KEY}`)
-    .then(response => {
-
+    Promise.all([
+      axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=${city},us&appid=${process.env.REACT_APP_API_KEY}&units=imperial`),
+      axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city},us&appid=${process.env.REACT_APP_API_KEY}&units=imperial`)
+    ])
+    .then(result => {
+      let [ fiveDay, current ] = result
       this.setState({
-        currentForcast:response.data
+        currentWeather:current.data,
+        fiveDay: fiveDay.data
       })
+
     })
   }
 

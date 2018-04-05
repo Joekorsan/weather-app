@@ -6,10 +6,12 @@ const DisplayTemp = (props) => {
   const card = {
   'width': '60%',
   'margin': '15px auto',
-  'border': '1px solid #eee',
-  'box-shadow': '0 2px 3px #ccc',
+  'border': '1px solid green',
+  'boxShadow': ' 2px 3px #ccc',
+  'background': '#ccc',
   'padding': '16px',
-  'text-align': 'center'
+  'textAlign': 'center'
+
 }
     let display = '';
     if (props.currentWeather) {
